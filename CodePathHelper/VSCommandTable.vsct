@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<CommandTable xmlns="http://schemas.microsoft.com/VisualStudio/2005-10-18/CommandTable" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<Extern href="stdidcmd.h" />
+	<Extern href="vsshlids.h" />
+	<Include href="KnownImageIds.vsct" />
+
+	<Commands package="guidShareCodePathPackage">
+		<Buttons>
+		  <Button guid="guidShareCodePathPackageCmdSet" id="cmdidGetCodePath" priority="0x0100" type="Button">
+        <Parent guid="guidShareCodePathPackageCmdSet" id="MyMenuGroup" />
+        <Icon guid="guidImages" id="bmpPic1" />
+        <Strings>
+          <ButtonText>Goto Code Path</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="guidShareCodePathPackageCmdSet" id="cmdShareCodePath" priority="0x0100" type="Button">
+        <Parent guid="guidShareCodePathPackageCmdSet" id="MyMenuGroup" />
+        <Icon guid="guidImages1" id="bmpPic1" />
+        <Strings>
+          <ButtonText>Share Code Path</ButtonText>
+        </Strings>
+      </Button>
+    </Buttons>
+	  <Groups>
+      <Group guid="guidShareCodePathPackageCmdSet" id="MyMenuGroup" priority="0x0600">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_MENU_TOOLS" />
+      </Group>
+    </Groups>
+    <Bitmaps>
+      <Bitmap guid="guidImages" href="Resources\ShareCodePath.png" usedList="bmpPic1, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows, bmpPicStrikethrough" />
+      <Bitmap guid="guidImages1" href="Resources\GotoCodePath.png" usedList="bmpPic1, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows, bmpPicStrikethrough" />
+    </Bitmaps>
+  </Commands>
+
+	<KeyBindings>
+		<KeyBinding guid="guidShareCodePathPackageCmdSet" id="cmdShareCodePath" mod1="Control" key1="K" mod2="Control" key2="VK_SPACE" editor="guidVSStd97" />
+	</KeyBindings>
+
+	<CommandPlacements>
+		<CommandPlacement guid="guidShareCodePathPackageCmdSet" id="cmdShareCodePath" priority="6000">
+			<Parent guid="guidSHLMainMenu" id="IDG_VS_CODEWIN_TEXTEDIT" />
+		</CommandPlacement>
+	</CommandPlacements>
+
+
+	<Symbols>
+		<!-- This is the package guid. -->
+		<GuidSymbol name="guidShareCodePathPackage" value="{26edee01-2e53-4882-ab25-139f2a65f65a}" />
+
+		<!-- This is the guid used to group the menu commands together -->
+		<!--<GuidSymbol name="guidShareCodePathCmdSet" value="{1bf86345-02bf-4028-a183-642081550581}">
+		</GuidSymbol>-->
+	
+    <GuidSymbol value="{90247df7-8439-4fd8-a1ca-024a94c78a8d}" name="guidShareCodePathPackageCmdSet">
+      <IDSymbol value="4128" name="MyMenuGroup" />
+      <IDSymbol value="256" name="cmdidGetCodePath" />
+      <IDSymbol value="4129" name="cmdShareCodePath" />
+    </GuidSymbol>
+  
+    <GuidSymbol value="{4c5f2db6-9165-495b-b860-f23900cd54c2}" name="guidImages">
+      <IDSymbol name="bmpPic1" value="1" />
+      <IDSymbol name="bmpPic2" value="2" />
+      <IDSymbol name="bmpPicSearch" value="3" />
+      <IDSymbol name="bmpPicX" value="4" />
+      <IDSymbol name="bmpPicArrows" value="5" />
+      <IDSymbol name="bmpPicStrikethrough" value="6" />
+    </GuidSymbol>
+  
+    <GuidSymbol value="{52198a18-585f-47c4-9a94-fff5e315058f}" name="guidImages1">
+      <IDSymbol name="bmpPic1" value="1" />
+      <IDSymbol name="bmpPic2" value="2" />
+      <IDSymbol name="bmpPicSearch" value="3" />
+      <IDSymbol name="bmpPicX" value="4" />
+      <IDSymbol name="bmpPicArrows" value="5" />
+      <IDSymbol name="bmpPicStrikethrough" value="6" />
+    </GuidSymbol>
+  </Symbols>
+</CommandTable>
