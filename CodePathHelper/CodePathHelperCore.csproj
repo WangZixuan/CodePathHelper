@@ -66,7 +66,9 @@
     <Compile Include="Commands\ShareCodePath.cs" />
     <Compile Include="Options.cs" />
     <Compile Include="Commands\GotoCodePath.cs" />
-    <Compile Include="UI\DirectlyGotoDialogWindow.xaml.cs" />
+    <Compile Include="UI\DirectlyGotoDialogWindow.xaml.cs">
+      <DependentUpon>DirectlyGotoDialogWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\InputUrlDialogWindow.xaml.cs">
       <DependentUpon>InputUrlDialogWindow.xaml</DependentUpon>
     </Compile>
@@ -114,15 +116,14 @@
     </VSCTCompile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\GotoCodePath.png" />
+    <Content Include="Resources\Icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <Content Include="Resources\LICENSE.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Resources\Icon.png">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
-    <Content Include="Resources\ShareCodePath.png" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Community.VisualStudio.Toolkit" ExcludeAssets="Runtime">

@@ -17,7 +17,7 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <TextBlock Text="Code path Url: " Margin="5"/>
-            <TextBox Grid.Row="1" x:Name="UrlTextBox" Margin="5" MaxHeight="150" Height="40"
+            <TextBox Grid.Row="1" x:Name="UrlTextBox" Margin="5"
                      ScrollViewer.VerticalScrollBarVisibility="Auto"
                      />
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="2">
