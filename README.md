@@ -5,6 +5,7 @@ Makes it super easy to share code path of Azure DevOps, or go to the file given 
 
 ## Usage:
 
+- Download and install from [Visual Studio Extension Marketplace](https://marketplace.visualstudio.com/items?itemName=Zixuan-Wang.codepathhelper).
 - Select code, right click, "Share Code Path". The generated url will be copied to your clipboard.
 - Tools -> "Goto Code Path", paste the Azure DevOps link, Visual Studio will help you navigate to the file and the line.
 - More options can be viewed in Tools -> Options -> Extensions -> Code Path Helper
