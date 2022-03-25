@@ -12,8 +12,8 @@ namespace CodePathHelper
     /// </summary>
     internal sealed partial class PackageGuids
     {
-        public const string guidShareCodePathPackageString = "26edee01-2e53-4882-ab25-139f2a65f65a";
-        public static Guid guidShareCodePathPackage = new Guid(guidShareCodePathPackageString);
+        public const string guidCodePathHelperPackageString = "26edee01-2e53-4882-ab25-139f2a65f65a";
+        public static Guid guidCodePathHelperPackage = new Guid(guidCodePathHelperPackageString);
 
         public const string guidShareCodePathCmdSetString = "1bf86345-02bf-4028-a183-642081550581";
         public static Guid guidShareCodePathCmdSet = new Guid(guidShareCodePathCmdSetString);

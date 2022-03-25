@@ -4,28 +4,38 @@
 
 	<Extern href="stdidcmd.h" />
 	<Extern href="vsshlids.h" />
-	<Include href="KnownImageIds.vsct" />
 
-	<Commands package="guidShareCodePathPackage">
+	<Commands package="guidCodePathHelperPackage">
+    
 		<Buttons>
 		  <Button guid="guidShareCodePathPackageCmdSet" id="cmdidGetCodePath" priority="0x0100" type="Button">
         <Parent guid="guidShareCodePathPackageCmdSet" id="MyMenuGroup" />
+        <Icon guid="guidShareCodePathImages" id="shareCodePathIcon" />
         <Strings>
           <ButtonText>Goto Code Path</ButtonText>
         </Strings>
       </Button>
+      
       <Button guid="guidShareCodePathPackageCmdSet" id="cmdShareCodePath" priority="0x0100" type="Button">
         <Parent guid="guidShareCodePathPackageCmdSet" id="MyMenuGroup" />
+        <Icon guid="guidGotoCodePathImages" id="gotoCodePathIcon" />
         <Strings>
           <ButtonText>Share Code Path</ButtonText>
         </Strings>
       </Button>
     </Buttons>
+    
 	  <Groups>
       <Group guid="guidShareCodePathPackageCmdSet" id="MyMenuGroup" priority="0x0600">
         <Parent guid="guidSHLMainMenu" id="IDM_VS_MENU_TOOLS" />
       </Group>
     </Groups>
+
+    <Bitmaps>
+      <Bitmap guid="guidShareCodePathImages" href="Resources\ShareCodePath.png" usedList="shareCodePathIcon" />
+      <Bitmap guid="guidGotoCodePathImages" href="Resources\GotoCodePath.png" usedList="gotoCodePathIcon" />
+    </Bitmaps>
+    
   </Commands>
 
 	<KeyBindings>
@@ -41,11 +51,15 @@
 
 	<Symbols>
 		<!-- This is the package guid. -->
-		<GuidSymbol name="guidShareCodePathPackage" value="{26edee01-2e53-4882-ab25-139f2a65f65a}" />
+		<GuidSymbol name="guidCodePathHelperPackage" value="{26edee01-2e53-4882-ab25-139f2a65f65a}" />
 
-		<!-- This is the guid used to group the menu commands together -->
-		<!--<GuidSymbol name="guidShareCodePathCmdSet" value="{1bf86345-02bf-4028-a183-642081550581}">
-		</GuidSymbol>-->
+    <GuidSymbol name="guidShareCodePathImages" value="{4c5f2db6-9165-495b-b860-f23900cd54c2}">
+      <IDSymbol name="shareCodePathIcon" value="1" />
+    </GuidSymbol>
+
+    <GuidSymbol name="guidGotoCodePathImages" value="{4c5f2db6-9165-495b-b860-f23900cd54c3}">
+      <IDSymbol name="gotoCodePathIcon" value="1" />
+    </GuidSymbol>
 	
     <GuidSymbol value="{90247df7-8439-4fd8-a1ca-024a94c78a8d}" name="guidShareCodePathPackageCmdSet">
       <IDSymbol value="4128" name="MyMenuGroup" />

@@ -16,7 +16,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <TextBlock Text="Detected url in Clipboard: " Margin="5"/>
+            <TextBlock Text="Url detected in Clipboard: " Margin="5"/>
             <TextBlock Margin="5" Name="urlTextBlock" Grid.Row="1"/>
             
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="2">

@@ -42,7 +42,7 @@
 
             if (Options.Instance.ExtractGitInfoEveryTime || string.IsNullOrWhiteSpace(_repoUrl) || string.IsNullOrWhiteSpace(_repoUrl))
             {
-                _branchName = Options.Instance.UseCurrentBranch ? RunGitCommand("rev-parse --abbrev-ref HEAD") : Options.Instance.DefaultBranchName;
+                _branchName = Options.Instance.UseCurrentBranch ? GitGetBranch() : Options.Instance.DefaultBranchName;
                 _repoUrl = RunGitCommand("config --get remote.origin.url");
             }
 
@@ -64,20 +64,20 @@
             RunGitCommand("push");
         }
 
+        public static string GitGetBranch()
+        {
+            return RunGitCommand("rev-parse --abbrev-ref HEAD");
+        }
+
         public static void GitCommitAndPush()
         {
             string savedWorkingDirectory = _process.StartInfo.WorkingDirectory;
             
             _process.StartInfo.WorkingDirectory = GetGitRootPath();
 
-            string currentBranch = RunGitCommand("rev-parse --abbrev-ref HEAD");
-           
-
             RunGitCommand("add .");
-            RunGitCommand($"commit -m '{DateTime.Now}'");
-
-            string pushParam = currentBranch != null ? $"--set-upstream origin {currentBranch}" : string.Empty;
-            RunGitCommand($"push {pushParam}"); 
+            RunGitCommand($"commit -m \"{DateTime.Now}\"");
+            RunGitCommand($"push --set-upstream origin {GitGetBranch()}"); 
 
             _process.StartInfo.WorkingDirectory = savedWorkingDirectory;
         }

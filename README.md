@@ -25,4 +25,4 @@ Microsoft is hiring! If you are interested in any [jobs](https://careers.microso
 
 ## Thanks
 - [Mads Kristensen](https://github.com/madskristensen) who provided great visual studio extensions development tutorial
-- [Origami]("https://icons8.com/icon/cbd4IrRAjjeB/origami") icon by [Icons8]("https://icons8.com")
+- [Origami](https://icons8.com/icon/cbd4IrRAjjeB/origami) icon by [Icons8](https://icons8.com)

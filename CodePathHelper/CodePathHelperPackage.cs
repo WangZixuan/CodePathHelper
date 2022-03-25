@@ -12,7 +12,7 @@ namespace CodePathHelper
     [ProvideMenuResource("Menus.ctmenu", 1)]
     [ProvideOptionPage(typeof(OptionsProvider.GeneralOptions), "Extensions", Vsix.Name, 0, 0, true, ProvidesLocalizedCategoryName = false)]
     [ProvideProfile(typeof(OptionsProvider.GeneralOptions), "Extensions", Vsix.Name, 0, 0, true)]
-    [Guid(PackageGuids.guidShareCodePathPackageString)]
+    [Guid(PackageGuids.guidCodePathHelperPackageString)]
     [ProvideBindingPath]
     public sealed class CodePathHelperPackage : ToolkitPackage
     {
