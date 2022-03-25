@@ -42,7 +42,33 @@
 
         public static string GenerateUrlFromInfo(in string repoUrl, in string filePath, in string branchName, in int line, in int lineEnd, in int lineStartColumn, in int lineEndColumn)
         {
-            return $"{repoUrl}?path={filePath}&version=GB{branchName}&line={line}&lineEnd={lineEnd}&lineStartColumn={lineStartColumn}&lineEndColumn={lineEndColumn}&lineStyle=plain&_a=contents";
+            return $"{FormatRepoUrl(repoUrl)}?path={filePath}&version=GB{branchName}&line={line}&lineEnd={lineEnd}&lineStartColumn={lineStartColumn}&lineEndColumn={lineEndColumn}&lineStyle=plain&_a=contents";
+        }
+
+        /// <summary>
+        /// Repo url extracted from git can be: 
+        ///  - https://user@dev.azure.com/user/Repository/_git/Repository
+        ///  - https://tenant.visualstudio.com/Organization/_git/Repository
+        /// </summary>
+        /// <param name="url">Original url</param>
+        /// <returns>Formated url</returns>
+        private static string FormatRepoUrl(in string url)
+        {
+            if (!url.StartsWith(@"https://"))
+                return url;
+
+            string formatedUrl = url.Substring(8); // Remove "https://"
+
+            var urlParts = formatedUrl.Split('/');
+            if (urlParts.Length < 4)
+                return url;
+
+            if (urlParts[0].Contains("dev.azure.com"))
+            {
+                return $"https://{urlParts[1]}.visualstudio.com/_git/{urlParts[2]}";
+            }
+
+            return url;
         }
     }
 }

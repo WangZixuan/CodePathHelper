@@ -43,7 +43,7 @@
             if (Options.Instance.ExtractGitInfoEveryTime || string.IsNullOrWhiteSpace(_repoUrl) || string.IsNullOrWhiteSpace(_repoUrl))
             {
                 _branchName = Options.Instance.UseCurrentBranch ? GitGetBranch() : Options.Instance.DefaultBranchName;
-                _repoUrl = RunGitCommand("config --get remote.origin.url");
+                _repoUrl = GitGetRepoUrl();
             }
 
             string rootPath = GetGitRootPath();
@@ -67,6 +67,15 @@
         public static string GitGetBranch()
         {
             return RunGitCommand("rev-parse --abbrev-ref HEAD");
+        }
+
+        public static string GitGetRepoUrl()
+        {
+            string repoUrl = RunGitCommand("config --get remote.origin.url");
+
+            // Remove some redundacy in url
+
+            return repoUrl;
         }
 
         public static void GitCommitAndPush()

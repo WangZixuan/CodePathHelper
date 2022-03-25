@@ -32,8 +32,10 @@
     </Groups>
 
     <Bitmaps>
-      <Bitmap guid="guidShareCodePathImages" href="Resources\ShareCodePath.png" usedList="shareCodePathIcon" />
-      <Bitmap guid="guidGotoCodePathImages" href="Resources\GotoCodePath.png" usedList="gotoCodePathIcon" />
+      <Bitmap guid="guidShareCodePathImages" href="Resources\Icon.png" usedList="shareCodePathIcon" />
+      <Bitmap guid="guidGotoCodePathImages" href="Resources\Icon.png" usedList="gotoCodePathIcon" />
+      <!--<Bitmap guid="guidShareCodePathImages" href="Resources\ShareCodePath.png" usedList="shareCodePathIcon" />
+      <Bitmap guid="guidGotoCodePathImages" href="Resources\GotoCodePath.png" usedList="gotoCodePathIcon" />-->
     </Bitmaps>
     
   </Commands>
