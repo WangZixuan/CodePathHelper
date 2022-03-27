@@ -19,5 +19,15 @@
             Assert.IsTrue(branchName == "users/TestAzureDevOps");
             Assert.IsTrue(lineNumber == 22);
         }
+
+        [TestMethod]
+        public void TestFormatRepoUrl()
+        {
+            string newUrl = AzureDevOpsCodePathProvider.FormatRepoUrl("https://user@dev.azure.com/user/Repository/_git/Repository");
+            Assert.IsTrue(newUrl == "https://user.visualstudio.com/_git/Repository");
+
+            string newUrl2 = AzureDevOpsCodePathProvider.FormatRepoUrl("https://tenant.visualstudio.com/Organization/_git/Repository");
+            Assert.IsTrue(newUrl2 == "https://tenant.visualstudio.com/Organization/_git/Repository");
+        }
     }
 }

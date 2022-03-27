@@ -52,7 +52,7 @@
         /// </summary>
         /// <param name="url">Original url</param>
         /// <returns>Formated url</returns>
-        private static string FormatRepoUrl(in string url)
+        public static string FormatRepoUrl(in string url)
         {
             if (!url.StartsWith(@"https://"))
                 return url;

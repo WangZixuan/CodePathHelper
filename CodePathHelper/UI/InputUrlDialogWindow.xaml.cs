@@ -42,7 +42,7 @@
             
             // Close and goto
             this.Close();
-            FileNavigationProvider.GoToFileLine(_dte, filePath, lineNumber);
+            FileNavigationProvider.GoToFileLine(_dte, filePath, lineNumber, branchName);
         }
     }
 }

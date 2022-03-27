@@ -14,7 +14,6 @@
         private readonly string _filePath;
         private readonly int _lineNumber;
 
-
         public DirectlyGotoDialogWindow(EnvDTE80.DTE2 dte, string url, string filePath, int lineNumber)
         {
             InitializeComponent();
@@ -35,7 +34,7 @@
         {
             // Close and goto
             this.Close();
-            FileNavigationProvider.GoToFileLine(_dte, _filePath, _lineNumber);
+            FileNavigationProvider.GoToFileLine(_dte, _filePath, _lineNumber, GitProvider.GitGetBranch());
         }
     }
 }

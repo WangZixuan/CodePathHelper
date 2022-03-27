@@ -8,16 +8,16 @@
 	<Commands package="guidCodePathHelperPackage">
     
 		<Buttons>
-		  <Button guid="guidShareCodePathPackageCmdSet" id="cmdGotoCodePath" priority="0x0100" type="Button">
-        <Parent guid="guidShareCodePathPackageCmdSet" id="MyMenuGroup" />
+		  <Button guid="guidCodePathHelperPackageCmdSet" id="cmdGotoCodePath" priority="0x0100" type="Button">
+        <Parent guid="guidCodePathHelperPackageCmdSet" id="MyMenuGroup" />
         <Icon guid="guidGotoCodePathImages" id="gotoCodePathIcon" />
         <Strings>
           <ButtonText>Goto Code Path</ButtonText>
         </Strings>
       </Button>
       
-      <Button guid="guidShareCodePathPackageCmdSet" id="cmdShareCodePath" priority="0x0100" type="Button">
-        <Parent guid="guidShareCodePathPackageCmdSet" id="MyMenuGroup" />
+      <Button guid="guidCodePathHelperPackageCmdSet" id="cmdShareCodePath" priority="0x0100" type="Button">
+        <Parent guid="guidCodePathHelperPackageCmdSet" id="MyMenuGroup" />
         <Icon guid="guidShareCodePathImages" id="shareCodePathIcon" />
         <Strings>
           <ButtonText>Share Code Path</ButtonText>
@@ -26,7 +26,7 @@
     </Buttons>
     
 	  <Groups>
-      <Group guid="guidShareCodePathPackageCmdSet" id="MyMenuGroup" priority="0x0600">
+      <Group guid="guidCodePathHelperPackageCmdSet" id="MyMenuGroup" priority="0x0600">
         <Parent guid="guidSHLMainMenu" id="IDM_VS_MENU_TOOLS" />
       </Group>
     </Groups>
@@ -39,12 +39,12 @@
   </Commands>
 
 	<KeyBindings>
-		<KeyBinding guid="guidShareCodePathPackageCmdSet" id="cmdShareCodePath" mod1="Control" key1="S" mod2="Control" key2="C" editor="guidVSStd97" />
-		<KeyBinding guid="guidShareCodePathPackageCmdSet" id="cmdGotoCodePath" mod1="Control" key1="G" mod2="Control" key2="C" editor="guidVSStd97" />
+		<KeyBinding guid="guidCodePathHelperPackageCmdSet" id="cmdShareCodePath" mod1="Control" key1="S" mod2="Control" key2="C" editor="guidVSStd97" />
+		<KeyBinding guid="guidCodePathHelperPackageCmdSet" id="cmdGotoCodePath" mod1="Control" key1="G" mod2="Control" key2="C" editor="guidVSStd97" />
 	</KeyBindings>
 
 	<CommandPlacements>
-		<CommandPlacement guid="guidShareCodePathPackageCmdSet" id="cmdShareCodePath" priority="6000">
+		<CommandPlacement guid="guidCodePathHelperPackageCmdSet" id="cmdShareCodePath" priority="6000">
 			<Parent guid="guidSHLMainMenu" id="IDG_VS_CODEWIN_TEXTEDIT" />
 		</CommandPlacement>
 	</CommandPlacements>
@@ -62,7 +62,7 @@
       <IDSymbol name="gotoCodePathIcon" value="1" />
     </GuidSymbol>
 	
-    <GuidSymbol value="{90247df7-8439-4fd8-a1ca-024a94c78a8d}" name="guidShareCodePathPackageCmdSet">
+    <GuidSymbol value="{90247df7-8439-4fd8-a1ca-024a94c78a8d}" name="guidCodePathHelperPackageCmdSet">
       <IDSymbol value="4128" name="MyMenuGroup" />
       <IDSymbol value="256" name="cmdGotoCodePath" />
       <IDSymbol value="4129" name="cmdShareCodePath" />

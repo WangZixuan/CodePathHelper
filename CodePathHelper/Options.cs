@@ -61,6 +61,12 @@ namespace CodePathHelper
         [Description("If highlight the code snippet from url. NOT IMPLEMENTED YET.")]
         [DefaultValue(false)]
         public bool HighlightCodeSnippet { get; set; } = false;
+
+        [Category("Goto Code Path")]
+        [DisplayName("Checkout the branch in Url")]
+        [Description("If checking out to the targeted branch in url.")]
+        [DefaultValue(false)]
+        public CheckingoutBranchOption CheckoutBranchEnabled { get; set; } = CheckingoutBranchOption.None;
     }
 
     public enum BranchSelection
@@ -81,5 +87,11 @@ namespace CodePathHelper
         None,
         Push,
         CommitAndPush
+    }
+
+    public enum CheckingoutBranchOption
+    {
+        None,
+        TryCheckoutLocalBranchIfExisting
     }
 }

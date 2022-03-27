@@ -73,8 +73,6 @@
         {
             string repoUrl = RunGitCommand("config --get remote.origin.url");
 
-            // Remove some redundacy in url
-
             return repoUrl;
         }
 
@@ -89,6 +87,11 @@
             RunGitCommand($"push --set-upstream origin {GitGetBranch()}"); 
 
             _process.StartInfo.WorkingDirectory = savedWorkingDirectory;
+        }
+
+        public static void GitCheckout(string branch)
+        {
+            RunGitCommand($"checkout {branch}");
         }
 
         private static string RunGitCommand(string arguments)
