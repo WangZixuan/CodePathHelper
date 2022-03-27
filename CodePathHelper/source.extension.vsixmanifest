@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="267fa06c-a972-428f-9a89-3be2e2dc785a" Version="0.1.0" Language="en-US" Publisher="Zixuan Wang" />
+        <Identity Id="267fa06c-a972-428f-9a89-3be2e2dc785a" Version="0.2.0" Language="en-US" Publisher="Zixuan Wang" />
         <DisplayName>Code Path Helper</DisplayName>
         <Description xml:space="preserve">Makes it super easy to share code path of Azure DevOps, or go to the file given Azure DevOps link.</Description>
         <MoreInfo>https://github.com/WangZixuan/CodePathHelper</MoreInfo>
