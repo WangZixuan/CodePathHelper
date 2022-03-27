@@ -8,9 +8,9 @@
 	<Commands package="guidCodePathHelperPackage">
     
 		<Buttons>
-		  <Button guid="guidShareCodePathPackageCmdSet" id="cmdidGetCodePath" priority="0x0100" type="Button">
+		  <Button guid="guidShareCodePathPackageCmdSet" id="cmdGotoCodePath" priority="0x0100" type="Button">
         <Parent guid="guidShareCodePathPackageCmdSet" id="MyMenuGroup" />
-        <Icon guid="guidShareCodePathImages" id="shareCodePathIcon" />
+        <Icon guid="guidGotoCodePathImages" id="gotoCodePathIcon" />
         <Strings>
           <ButtonText>Goto Code Path</ButtonText>
         </Strings>
@@ -18,7 +18,7 @@
       
       <Button guid="guidShareCodePathPackageCmdSet" id="cmdShareCodePath" priority="0x0100" type="Button">
         <Parent guid="guidShareCodePathPackageCmdSet" id="MyMenuGroup" />
-        <Icon guid="guidGotoCodePathImages" id="gotoCodePathIcon" />
+        <Icon guid="guidShareCodePathImages" id="shareCodePathIcon" />
         <Strings>
           <ButtonText>Share Code Path</ButtonText>
         </Strings>
@@ -32,16 +32,15 @@
     </Groups>
 
     <Bitmaps>
-      <Bitmap guid="guidShareCodePathImages" href="Resources\Icon.png" usedList="shareCodePathIcon" />
-      <Bitmap guid="guidGotoCodePathImages" href="Resources\Icon.png" usedList="gotoCodePathIcon" />
-      <!--<Bitmap guid="guidShareCodePathImages" href="Resources\ShareCodePath.png" usedList="shareCodePathIcon" />
-      <Bitmap guid="guidGotoCodePathImages" href="Resources\GotoCodePath.png" usedList="gotoCodePathIcon" />-->
+      <Bitmap guid="guidShareCodePathImages" href="Resources\ShareCodePath.png" usedList="shareCodePathIcon" />
+      <Bitmap guid="guidGotoCodePathImages" href="Resources\GotoCodePath.png" usedList="gotoCodePathIcon" />
     </Bitmaps>
     
   </Commands>
 
 	<KeyBindings>
-		<KeyBinding guid="guidShareCodePathPackageCmdSet" id="cmdShareCodePath" mod1="Control" key1="K" mod2="Control" key2="VK_SPACE" editor="guidVSStd97" />
+		<KeyBinding guid="guidShareCodePathPackageCmdSet" id="cmdShareCodePath" mod1="Control" key1="S" mod2="Control" key2="C" editor="guidVSStd97" />
+		<KeyBinding guid="guidShareCodePathPackageCmdSet" id="cmdGotoCodePath" mod1="Control" key1="G" mod2="Control" key2="C" editor="guidVSStd97" />
 	</KeyBindings>
 
 	<CommandPlacements>
@@ -65,7 +64,7 @@
 	
     <GuidSymbol value="{90247df7-8439-4fd8-a1ca-024a94c78a8d}" name="guidShareCodePathPackageCmdSet">
       <IDSymbol value="4128" name="MyMenuGroup" />
-      <IDSymbol value="256" name="cmdidGetCodePath" />
+      <IDSymbol value="256" name="cmdGotoCodePath" />
       <IDSymbol value="4129" name="cmdShareCodePath" />
     </GuidSymbol>
    

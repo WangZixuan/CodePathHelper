@@ -24,5 +24,5 @@ Makes it super easy to share code path of Azure DevOps, or go to the file given 
 Microsoft is hiring! If you are interested in any [jobs](https://careers.microsoft.com/us/en) (especially in Suzhou), feel free to contact me!
 
 ## Thanks
-- [Mads Kristensen](https://github.com/madskristensen) who provided great visual studio extensions development tutorial
-- [Origami](https://icons8.com/icon/cbd4IrRAjjeB/origami) icon by [Icons8](https://icons8.com)
+- Logo and icons designed by [Xiang Li](https://lxlhf940306.wixsite.com/mysite)
+- [Mads Kristensen](https://github.com/madskristensen) who provided great tutorials of visual studio extensions development 
