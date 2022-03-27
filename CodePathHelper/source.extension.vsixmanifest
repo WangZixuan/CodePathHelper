@@ -7,7 +7,7 @@
         <MoreInfo>https://github.com/WangZixuan/CodePathHelper</MoreInfo>
         <License>Resources\LICENSE.txt</License>
         <Icon>Resources\Icon.png</Icon>
-        <PreviewImage>Resources\Icon.png</PreviewImage>
+        <PreviewImage>Resources\Icon-small.png</PreviewImage>
     </Metadata>
     <Installation>
         <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[15.0,17.0)" />
