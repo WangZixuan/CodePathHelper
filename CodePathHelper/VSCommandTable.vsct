@@ -39,8 +39,8 @@
   </Commands>
 
 	<KeyBindings>
-		<KeyBinding guid="guidCodePathHelperPackageCmdSet" id="cmdShareCodePath" mod1="Control" key1="S" mod2="Control" key2="C" editor="guidVSStd97" />
-		<KeyBinding guid="guidCodePathHelperPackageCmdSet" id="cmdGotoCodePath" mod1="Control" key1="G" mod2="Control" key2="C" editor="guidVSStd97" />
+		<KeyBinding guid="guidCodePathHelperPackageCmdSet" id="cmdShareCodePath" mod1="Control" key1="K" mod2="Control" key2="VK_OEM_COMMA" editor="guidVSStd97" />
+		<KeyBinding guid="guidCodePathHelperPackageCmdSet" id="cmdGotoCodePath" mod1="Control" key1="K" mod2="Control" key2="VK_OEM_PERIOD" editor="guidVSStd97" />
 	</KeyBindings>
 
 	<CommandPlacements>

@@ -9,14 +9,15 @@ Makes it super easy to share code path of Azure DevOps, or go to the file given 
 - Select code, right click, "Share Code Path". The generated url will be copied to your clipboard.
 - Tools -> "Goto Code Path", paste the Azure DevOps link, Visual Studio will help you navigate to the file and the line.
 - More options can be viewed in Tools -> Options -> Extensions -> Code Path Helper.
-- To update key binding of shortcut, go to Tools -> Options -> General -> Keyboard, search for "Tools.ShareCodePath" and "Tools.GotoCodePath". By default they are "Ctrl+S, Ctrl+C"(Share Code) and "Ctrl+G, Ctrl+C"(Goto Code).
+- To update key binding of shortcut, go to Tools -> Options -> Environment -> Keyboard, search for "Tools.ShareCodePath" and "Tools.GotoCodePath". By default they are "Ctrl+K, Ctrl+,"(Share Code Path) and "Ctrl+K, Ctrl+."(Goto Code Path).
 
 ## Attention
 - Git is involved in almost every step, but please pay attention to any possible mismatches in branches: remote VS local branch, your local branch VS branch in Url shared by others, etc.
 
 ## Roadmap
-- Multi language support
-- Highlight code from Url
+- Multi-language support
+- Highlight code from Url.
+- Code format when copying.
 - Extend to other git service provider: GitHub, GitLab, etc.
  
 ## Others

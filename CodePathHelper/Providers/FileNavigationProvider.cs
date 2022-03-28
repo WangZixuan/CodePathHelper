@@ -1,7 +1,6 @@
 ﻿namespace CodePathHelper.Providers
 {
     using EnvDTE80;
-    using Microsoft.VisualStudio.Text;
     using System.IO;
 
     internal static  class FileNavigationProvider
@@ -13,7 +12,11 @@
 
             string gitRootFolder = GitProvider.GetGitRootPath();
 
-            if (Options.Instance.CheckoutBranchEnabled == CheckingoutBranchOption.TryCheckoutLocalBranchIfExisting)
+            if (Options.Instance.CheckoutBranchOption == CheckingoutBranchOption.DefaultBranch)
+            {
+                GitProvider.GitCheckout(Options.Instance.DefaultBranchName);
+            }
+            else if (Options.Instance.CheckoutBranchOption == CheckingoutBranchOption.UrlBranch)
             {
                 GitProvider.GitCheckout(branchName);
             }

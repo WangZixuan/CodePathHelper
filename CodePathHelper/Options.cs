@@ -66,7 +66,7 @@ namespace CodePathHelper
         [DisplayName("Checkout the branch in Url")]
         [Description("If checking out to the targeted branch in url.")]
         [DefaultValue(false)]
-        public CheckingoutBranchOption CheckoutBranchEnabled { get; set; } = CheckingoutBranchOption.None;
+        public CheckingoutBranchOption CheckoutBranchOption { get; set; } = CheckingoutBranchOption.CurrentBranch;
     }
 
     public enum BranchSelection
@@ -91,7 +91,8 @@ namespace CodePathHelper
 
     public enum CheckingoutBranchOption
     {
-        None,
-        TryCheckoutLocalBranchIfExisting
+        CurrentBranch,
+        DefaultBranch,
+        UrlBranch
     }
 }

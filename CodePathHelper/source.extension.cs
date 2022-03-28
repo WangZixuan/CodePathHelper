@@ -11,7 +11,7 @@ namespace CodePathHelper
         public const string Name = "Code Path Helper";
         public const string Description = @"Makes it super easy to share or go to code path";
         public const string Language = "en-US";
-        public const string Version = "0.2.0";
+        public const string Version = "0.3.0";
         public const string Author = "Zixuan Wang";
         public const string Tags = "";
     }

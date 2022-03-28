@@ -108,7 +108,7 @@
                     
                     if (isExtracted)
                     {
-                        DirectlyGotoDialogWindow directlyGotoDialogWindow = new DirectlyGotoDialogWindow(dteObject, url, filePath, lineNumber)
+                        DirectlyGotoDialogWindow directlyGotoDialogWindow = new DirectlyGotoDialogWindow(dteObject, url, filePath, lineNumber, branchName)
                         {
                             HasMaximizeButton = false,
                             HasMinimizeButton = false
