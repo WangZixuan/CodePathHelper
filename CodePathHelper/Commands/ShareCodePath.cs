@@ -3,6 +3,7 @@
     using CodePathHelper.Providers;
     using Community.VisualStudio.Toolkit;
     using Microsoft.VisualStudio.Shell;
+    using Microsoft.VisualStudio.TextManager.Interop;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.Design;
@@ -113,18 +114,7 @@
                 return;
             }
 
-            int line, lineEnd, lineStartColumn, lineEndColumn;
-            string code = string.Empty;
-
-            if (selection.Value.Start.Position != selection.Value.End.Position)
-            {
-                SnapshotSpanProvider.GetStartAndEndLineNumberAndColumn(selection.Value, out line, out lineEnd, out lineStartColumn, out lineEndColumn);
-                code = selection.Value.GetText();
-            }
-            else
-            {
-                SnapshotSpanProvider.GetThisLineEndToCursor(selection.Value, out line, out lineEnd, out lineStartColumn, out lineEndColumn);
-            }
+            GetSelectedText(out int line, out int lineEnd, out int lineStartColumn, out int lineEndColumn, out string code);
 
             string url = AzureDevOpsCodePathProvider.GenerateUrlFromInfo(repoUrl, filePath, branchName, line, lineEnd, lineStartColumn, lineEndColumn);
             // Clip
@@ -159,6 +149,39 @@
             {
                 await MessageProvider.ShowInfoInMessageBoxAsync(message);
             }
+        }
+
+        private bool GetSelectedText(out int line, out int lineEnd, out int lineStartColumn, out int lineEndColumn, out string code)
+        {
+            var textManager = this.ServiceProvider.GetServiceAsync(typeof(SVsTextManager)).ConfigureAwait(false).GetAwaiter().GetResult() as IVsTextManager2;
+            textManager.GetActiveView2(1, null, (uint)_VIEWFRAMETYPE.vftCodeWindow, out IVsTextView view);
+
+            view.GetSelection(out int startLine, out int startColumn, out int endLine, out int endColumn); //end could be before beginning
+            view.GetSelectedText(out code);
+
+            if (startLine == endLine && startColumn == endColumn)
+            {
+                line = startLine + 1;
+                lineEnd = endLine + 2;
+                lineStartColumn = 1;
+                lineEndColumn = 1;
+            }
+            else if (startLine < endLine || (startLine == endLine && startColumn < endColumn))
+            {
+                line = startLine + 1;
+                lineEnd = endLine + 1;
+                lineStartColumn = startColumn + 1;
+                lineEndColumn = endColumn + 1;
+            }
+            else
+            {
+                line = endLine + 1;
+                lineEnd = startLine + 1;
+                lineStartColumn = endColumn + 1;
+                lineEndColumn = startColumn + 1;
+            }
+
+            return true;
         }
     }
 }

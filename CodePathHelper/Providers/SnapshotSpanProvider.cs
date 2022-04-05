@@ -2,6 +2,9 @@
 {
     using Microsoft.VisualStudio.Text;
 
+    /// <summary>
+    /// SnapshotSpanProvider, will be deprecated.
+    /// </summary>
     internal static class SnapshotSpanProvider
     {
         internal static void GetStartAndEndLineNumberAndColumn(in SnapshotSpan selectedSpan, out int line, out int lineEnd, out int lineStartColumn, out int lineEndColumn)
