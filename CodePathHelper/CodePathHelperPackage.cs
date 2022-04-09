@@ -9,7 +9,7 @@ using Task = System.Threading.Tasks.Task;
 namespace CodePathHelper
 {
     [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
-    [InstalledProductRegistration(Vsix.Name, Vsix.Description, Vsix.Version)]
+    [InstalledProductRegistration(Vsix.Name, Vsix.Description, Vsix.Id)]
     [ProvideMenuResource("Menus.ctmenu", 1)]
     [ProvideOptionPage(typeof(OptionsProvider.GeneralOptions), "Extensions", Vsix.Name, 0, 0, true, ProvidesLocalizedCategoryName = false)]
     [ProvideProfile(typeof(OptionsProvider.GeneralOptions), "Extensions", Vsix.Name, 0, 0, true)]
