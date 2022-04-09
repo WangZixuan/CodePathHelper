@@ -57,10 +57,10 @@ namespace CodePathHelper
         public bool ReadClipboardFirst { get; set; } = false;
 
         [Category("Goto Code Path")]
-        [DisplayName("Highlight code snippet")]
-        [Description("If highlight the code snippet from url. NOT IMPLEMENTED YET.")]
-        [DefaultValue(false)]
-        public bool HighlightCodeSnippet { get; set; } = false;
+        [DisplayName("Select code snippet")]
+        [Description("If select the code snippet from url automatically.")]
+        [DefaultValue(true)]
+        public bool SelectCodeSnippet { get; set; } = true;
 
         [Category("Goto Code Path")]
         [DisplayName("Checkout the branch in Url")]

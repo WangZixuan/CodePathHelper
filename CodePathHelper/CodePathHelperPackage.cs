@@ -1,8 +1,9 @@
-﻿using System;
-using System.Runtime.InteropServices;
-using System.Threading;
+﻿using CodePathHelper.Commands;
 using Community.VisualStudio.Toolkit;
 using Microsoft.VisualStudio.Shell;
+using System;
+using System.Runtime.InteropServices;
+using System.Threading;
 using Task = System.Threading.Tasks.Task;
 
 namespace CodePathHelper
@@ -19,8 +20,8 @@ namespace CodePathHelper
         protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
         {
             await this.RegisterCommandsAsync();
-            await GotoCodePath.InitializeAsync(this);
             await ShareCodePath.InitializeAsync(this);
+            await GotoCodePath.InitializeAsync(this);
         }
     }
 }

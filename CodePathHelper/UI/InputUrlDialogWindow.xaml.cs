@@ -14,7 +14,6 @@
         public InputUrlDialogWindow(EnvDTE80.DTE2 dte)
         {
             InitializeComponent();
-
             _dte = dte;
         }
 
@@ -33,16 +32,17 @@
             }
 
             // Extract
-            bool isExtracted = AzureDevOpsCodePathProvider.ExtractInfoFromUrl(url, out string repoUrl, out string filePath, out string branchName, out int lineNumber);
+            bool isExtracted = AzureDevOpsCodePathProvider.ExtractInfoFromUrl(url, out string repoUrl, out string filePath, out string branchName, out int line, out int lineEnd, out int lineStartColumn, out int lineEndColumn);
             if (!isExtracted)
             {
                 _ = MessageProvider.ShowErrorInMessageBoxAsync("Url is incorrect, please double check and retry.");
+                this.UrlTextBox.Clear();
                 return;
             }
             
             // Close and goto
             this.Close();
-            FileNavigationProvider.GoToFileLine(_dte, filePath, lineNumber, branchName);
+            FileNavigationProvider.GoToFileLine(_dte, filePath, branchName, line, lineEnd, lineStartColumn, lineEndColumn);
         }
     }
 }

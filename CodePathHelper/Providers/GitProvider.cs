@@ -21,11 +21,6 @@
             }
         };
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="fileFullPath"></param>
-        /// <returns>A tuple of (ifSuccuess, repoUrl, branchName, fileName)</returns>
         public static bool GetGitInfo(string fileFullPath, out string repoUrl, out string branchName, out string filePath)
         {
             _process.StartInfo.WorkingDirectory = Path.GetDirectoryName(fileFullPath);
@@ -54,26 +49,34 @@
             return true;
         }
 
-        public static string GetGitRootPath()
+        public static string GetGitRootPath(string solutionDir = null)
         {
+            if (!string.IsNullOrWhiteSpace(solutionDir))
+                _process.StartInfo.WorkingDirectory = solutionDir;
+
             return RunGitCommand("rev-parse --show-toplevel");
         }
 
-        public static void GitPush()
+        public static void GitPush(string solutionDir = null)
         {
+            if (!string.IsNullOrWhiteSpace(solutionDir))
+                _process.StartInfo.WorkingDirectory = solutionDir;
             RunGitCommand("push");
         }
 
-        public static string GitGetBranch()
+        public static string GitGetBranch(string solutionDir = null)
         {
+            if (!string.IsNullOrWhiteSpace(solutionDir))
+                _process.StartInfo.WorkingDirectory = solutionDir;
             return RunGitCommand("rev-parse --abbrev-ref HEAD");
         }
 
-        public static string GitGetRepoUrl()
+        public static string GitGetRepoUrl(string solutionDir = null)
         {
-            string repoUrl = RunGitCommand("config --get remote.origin.url");
-
-            return repoUrl;
+            if (!string.IsNullOrWhiteSpace(solutionDir))
+                _process.StartInfo.WorkingDirectory = solutionDir;
+            
+            return RunGitCommand("config --get remote.origin.url");
         }
 
         public static void GitCommitAndPush()
@@ -89,8 +92,11 @@
             _process.StartInfo.WorkingDirectory = savedWorkingDirectory;
         }
 
-        public static void GitCheckout(string branch)
+        public static void GitCheckout(string branch, string solutionDir = null)
         {
+            if (!string.IsNullOrWhiteSpace(solutionDir))
+                _process.StartInfo.WorkingDirectory = solutionDir;
+            
             RunGitCommand($"checkout {branch}");
         }
 

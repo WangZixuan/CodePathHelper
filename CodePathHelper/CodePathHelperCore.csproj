@@ -69,8 +69,6 @@
     <Compile Include="UI\DirectlyGotoDialogWindow.xaml.cs">
       <DependentUpon>DirectlyGotoDialogWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\HighlightWordTagger.cs" />
-    <Compile Include="UI\HighlightWordTaggerProvider.cs" />
     <Compile Include="UI\InputUrlDialogWindow.xaml.cs">
       <DependentUpon>InputUrlDialogWindow.xaml</DependentUpon>
     </Compile>

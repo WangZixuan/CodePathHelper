@@ -2,12 +2,15 @@
 {
     public static class AzureDevOpsCodePathProvider
     {
-        public static bool ExtractInfoFromUrl(in string url, out string repoUrl, out string filePath, out string branchName, out int lineNumber)
+        public static bool ExtractInfoFromUrl(in string url, out string repoUrl, out string filePath, out string branchName, out int line, out int lineEnd, out int lineStartColumn, out int lineEndColumn)
         {
             repoUrl = string.Empty;
             filePath = string.Empty;
             branchName = string.Empty;
-            lineNumber = -1;
+            line = -1;
+            lineEnd = -1;
+            lineStartColumn = -1;
+            lineEndColumn = -1;
 
             if (string.IsNullOrEmpty(url))
                 return false;
@@ -30,11 +33,24 @@
                 }
                 else if (urlParts[i].StartsWith("line="))
                 {
-                    lineNumber = int.Parse(urlParts[i].Substring(5));
+                    line = int.Parse(urlParts[i].Substring(5));
+                }
+                else if (urlParts[i].StartsWith("lineEnd="))
+                {
+                    lineEnd = int.Parse(urlParts[i].Substring(8));
+                }
+                else if (urlParts[i].StartsWith("lineStartColumn="))
+                {
+                    lineStartColumn = int.Parse(urlParts[i].Substring(16));
+                }
+                else if (urlParts[i].StartsWith("lineEndColumn="))
+                {
+                    lineEndColumn = int.Parse(urlParts[i].Substring(14));
                 }
             }
 
-            if (string.IsNullOrEmpty(repoUrl) || string.IsNullOrEmpty(filePath) || string.IsNullOrEmpty(branchName) || lineNumber < 0)
+            if (string.IsNullOrEmpty(repoUrl) || string.IsNullOrEmpty(filePath) || string.IsNullOrEmpty(branchName) || 
+                line < 0 || lineEnd < 0 || lineStartColumn < 0 || lineEndColumn < 0)
                 return false;
 
             return true;

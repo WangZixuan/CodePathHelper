@@ -1,4 +1,4 @@
-﻿namespace CodePathHelper
+﻿namespace CodePathHelper.Commands
 {
     using CodePathHelper.Providers;
     using Microsoft.VisualStudio.Shell;
@@ -74,7 +74,7 @@
             // the UI thread.
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync(package.DisposalToken);
 
-            OleMenuCommandService commandService = await package.GetServiceAsync(typeof(IMenuCommandService)) as OleMenuCommandService;
+            OleMenuCommandService commandService = await package.GetServiceAsync(typeof(IMenuCommandService)).ConfigureAwait(false) as OleMenuCommandService;
             Instance = new GotoCodePath(package, commandService);
         }
 
@@ -91,7 +91,7 @@
             EnvDTE80.DTE2 dteObject = (EnvDTE80.DTE2)Package.GetGlobalService(typeof(SDTE));
             if (dteObject == null)
             {
-                _ = MessageProvider.ShowErrorInMessageBoxAsync("Error loading VS environment, please restart and retry.");
+                MessageProvider.ShowErrorInMessageBoxAsync("Error loading VS environment, please restart and retry.").ConfigureAwait(false);
                 return;
             }
 
@@ -104,11 +104,11 @@
                 if (hasUrl)
                 {
                     // Extract
-                    bool isExtracted = AzureDevOpsCodePathProvider.ExtractInfoFromUrl(url, out string repoUrl, out string filePath, out string branchName, out int lineNumber);
+                    bool isExtracted = AzureDevOpsCodePathProvider.ExtractInfoFromUrl(url, out string repoUrl, out string filePath, out string branchName, out int line, out int lineEnd, out int lineStartColumn, out int lineEndColumn);
                     
                     if (isExtracted)
                     {
-                        DirectlyGotoDialogWindow directlyGotoDialogWindow = new DirectlyGotoDialogWindow(dteObject, url, filePath, lineNumber, branchName)
+                        DirectlyGotoDialogWindow directlyGotoDialogWindow = new DirectlyGotoDialogWindow(dteObject, url, filePath, branchName, line, lineEnd, lineStartColumn, lineEndColumn)
                         {
                             HasMaximizeButton = false,
                             HasMinimizeButton = false
@@ -120,6 +120,7 @@
                     }
                 }
             }
+
 
             InputUrlDialogWindow inputUrlDialogWindow = new InputUrlDialogWindow(dteObject)
             {

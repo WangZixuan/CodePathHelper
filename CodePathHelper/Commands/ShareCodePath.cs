@@ -1,4 +1,4 @@
-﻿namespace CodePathHelper
+﻿namespace CodePathHelper.Commands
 {
     using CodePathHelper.Providers;
     using Community.VisualStudio.Toolkit;
@@ -77,7 +77,7 @@
             // the UI thread.
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync(package.DisposalToken);
 
-            OleMenuCommandService commandService = await package.GetServiceAsync(typeof(IMenuCommandService)) as OleMenuCommandService;
+            OleMenuCommandService commandService = await package.GetServiceAsync(typeof(IMenuCommandService)).ConfigureAwait(false) as OleMenuCommandService;
             Instance = new ShareCodePath(package, commandService);
         }
 
@@ -97,26 +97,20 @@
             var fileFullPath = docView?.FilePath?.Trim('/');
             if (fileFullPath == null)
             {
-                await MessageProvider.ShowErrorInMessageBoxAsync("Failed to get file path.");
-                return;
-            }
-
-            var selection = docView?.TextView?.Selection.SelectedSpans.FirstOrDefault();
-            if (selection == null)
-            {
-                await MessageProvider.ShowErrorInMessageBoxAsync("Failed to get your selected text.");
+                await MessageProvider.ShowErrorInMessageBoxAsync("Failed to get file path.").ConfigureAwait(false);
                 return;
             }
 
             if (!GitProvider.GetGitInfo(fileFullPath, out string repoUrl, out string branchName, out string filePath))
             {
-                await MessageProvider.ShowErrorInMessageBoxAsync("Failed to extract git information.");
+                await MessageProvider.ShowErrorInMessageBoxAsync("Failed to extract git information.").ConfigureAwait(false);
                 return;
             }
 
             GetSelectedText(out int line, out int lineEnd, out int lineStartColumn, out int lineEndColumn, out string code);
 
             string url = AzureDevOpsCodePathProvider.GenerateUrlFromInfo(repoUrl, filePath, branchName, line, lineEnd, lineStartColumn, lineEndColumn);
+
             // Clip
             Dictionary<string, string> messageParameters = new Dictionary<string, string>
             {
@@ -126,7 +120,7 @@
             };
             Clipboard.SetText(messageParameters.Aggregate(Options.Instance.CustomizedCopyContent, (s, kv) => s.Replace(kv.Key, kv.Value)));
 
-            await ShowMessageAsync($"Code path copied and ready to be shared! Detailed url: {url}");
+            await ShowMessageAsync($"Code path copied and ready to be shared! Detailed url: {url}").ConfigureAwait(false);
 
             // Background git job
             if (Options.Instance.BackgroundGitJob == BackgroundGitJob.Push)
@@ -143,11 +137,11 @@
         {
             if (Options.Instance.NotificationStyle == NotificationStyle.StatusBar)
             {
-               await MessageProvider.ShowInStatusBarAsync(message);
+               await MessageProvider.ShowInStatusBarAsync(message).ConfigureAwait(false);
             }
             else if (Options.Instance.NotificationStyle == NotificationStyle.MessageBox)
             {
-                await MessageProvider.ShowInfoInMessageBoxAsync(message);
+                await MessageProvider.ShowInfoInMessageBoxAsync(message).ConfigureAwait(false);
             }
         }
 
