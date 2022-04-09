@@ -15,8 +15,6 @@ Makes it super easy to share code path of Azure DevOps, or go to the file given 
 - Git is involved in almost every step, but please pay attention to any possible mismatches in branches: remote VS local branch, your local branch VS branch in Url shared by others, etc.
 
 ## Roadmap
-- Multi-language support
-- Highlight code from Url.
 - Code format when copying.
 - Extend to other git service provider: GitHub, GitLab, etc.
  

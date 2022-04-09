@@ -91,7 +91,7 @@
             EnvDTE80.DTE2 dteObject = (EnvDTE80.DTE2)Package.GetGlobalService(typeof(SDTE));
             if (dteObject == null)
             {
-                MessageProvider.ShowErrorInMessageBoxAsync("Error loading VS environment, please restart and retry.").ConfigureAwait(false);
+                MessageProvider.ShowErrorInMessageBoxAsync("Error loading VS environment, please restart and retry.").ConfigureAwait(false).GetAwaiter().GetResult();
                 return;
             }
 
