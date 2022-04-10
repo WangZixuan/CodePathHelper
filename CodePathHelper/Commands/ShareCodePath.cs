@@ -1,8 +1,10 @@
 ﻿namespace CodePathHelper.Commands
 {
     using CodePathHelper.Providers;
+    using CodePathHelper.Utility;
     using Community.VisualStudio.Toolkit;
     using Microsoft.VisualStudio.Shell;
+    using Microsoft.VisualStudio.Text.Formatting;
     using Microsoft.VisualStudio.TextManager.Interop;
     using System;
     using System.Collections.Generic;
@@ -31,6 +33,9 @@
         /// </summary>
         private readonly AsyncPackage package;
 
+
+        private readonly IRtfBuilderService _rtfBuilderService;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ShareCodePath"/> class.
         /// Adds our command handlers for menu (commands must exist in the command table file)
@@ -45,6 +50,8 @@
             var menuCommandID = new CommandID(CommandSet, CommandId);
             var menuItem = new MenuCommand(this.Execute, menuCommandID);
             commandService.AddCommand(menuItem);
+
+            this._rtfBuilderService = VS.GetMefServiceAsync<IRtfBuilderService>().Result;
         }
 
         /// <summary>
@@ -110,6 +117,8 @@
             GetSelectedText(out int line, out int lineEnd, out int lineStartColumn, out int lineEndColumn, out string code);
 
             string url = AzureDevOpsCodePathProvider.GenerateUrlFromInfo(repoUrl, filePath, branchName, line, lineEnd, lineStartColumn, lineEndColumn);
+            var rtfContent = this._rtfBuilderService.GenerateRtf(docView?.TextView?.Selection.SelectedSpans);
+            var codeHtml = RtfPipe.Rtf.ToHtml(rtfContent);
 
             // Clip
             Dictionary<string, string> messageParameters = new Dictionary<string, string>
@@ -118,7 +127,17 @@
                 { @"{code}", code },
                 { @"{newline}", "\r\n" }
             };
-            Clipboard.SetText(messageParameters.Aggregate(Options.Instance.CustomizedCopyContent, (s, kv) => s.Replace(kv.Key, kv.Value)));
+
+            Dictionary<string, string> messageHtmlParameters = new Dictionary<string, string>
+            {
+                { @"{url}", ClipboardUtility.GenerateAElement(url) },
+                { @"{code}", codeHtml },
+                { @"{newline}", "\r\n" }
+            };
+
+            ClipboardUtility.SetClipboardData(
+                messageParameters.Aggregate(Options.Instance.CustomizedCopyContent, (s, kv) => s.Replace(kv.Key, kv.Value)),
+                messageHtmlParameters.Aggregate(Options.Instance.CustomizedCopyContent, (s, kv) => s.Replace(kv.Key, kv.Value)));
 
             await ShowMessageAsync($"Code path copied and ready to be shared! Detailed url: {url}").ConfigureAwait(false);
 
