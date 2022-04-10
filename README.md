@@ -15,7 +15,6 @@ Makes it super easy to share code path of Azure DevOps, or go to the file given 
 - Git is involved in almost every step, but please pay attention to any possible mismatches in branches: remote VS local branch, your local branch VS branch in Url shared by others, etc.
 
 ## Roadmap
-- Code format when copying.
 - Extend to other git service provider: GitHub, GitLab, etc.
  
 ## Others
@@ -23,4 +22,5 @@ Microsoft is hiring! If you are interested in any [jobs](https://careers.microso
 
 ## Thanks
 - Logo and icons designed by [Xiang Li](https://lxlhf940306.wixsite.com/mysite).
+- Customized copy content by [Huixin Li](https://github.com/HuixinLee).
 - [Mads Kristensen](https://github.com/madskristensen) who provided great tutorials of visual studio extensions development.

@@ -6,9 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace CodePathHelper.Utility
+namespace CodePathHelper.Providers
 {
-    internal class ClipboardUtility
+    internal static class ClipboardProvider
     {
         internal static void SetClipboardData(string plainText, string html) 
         {
@@ -24,7 +24,7 @@ namespace CodePathHelper.Utility
             return $"<a href=\"{url}\" target=\"_blank\">{url}</a>";
         }
 
-        internal static string GenerateHtmlForClipboard(string htmlFragment)
+        private static string GenerateHtmlForClipboard(string htmlFragment)
         {
             StringBuilder sb = new StringBuilder();
 

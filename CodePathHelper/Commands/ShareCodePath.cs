@@ -1,7 +1,6 @@
 ﻿namespace CodePathHelper.Commands
 {
     using CodePathHelper.Providers;
-    using CodePathHelper.Utility;
     using Community.VisualStudio.Toolkit;
     using Microsoft.VisualStudio.Shell;
     using Microsoft.VisualStudio.Text.Formatting;
@@ -10,7 +9,6 @@
     using System.Collections.Generic;
     using System.ComponentModel.Design;
     using System.Linq;
-    using System.Windows;
     using Task = System.Threading.Tasks.Task;
 
     /// <summary>
@@ -34,8 +32,6 @@
         private readonly AsyncPackage package;
 
 
-        private readonly IRtfBuilderService _rtfBuilderService;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="ShareCodePath"/> class.
         /// Adds our command handlers for menu (commands must exist in the command table file)
@@ -50,8 +46,6 @@
             var menuCommandID = new CommandID(CommandSet, CommandId);
             var menuItem = new MenuCommand(this.Execute, menuCommandID);
             commandService.AddCommand(menuItem);
-
-            this._rtfBuilderService = VS.GetMefServiceAsync<IRtfBuilderService>().Result;
         }
 
         /// <summary>
@@ -117,7 +111,9 @@
             GetSelectedText(out int line, out int lineEnd, out int lineStartColumn, out int lineEndColumn, out string code);
 
             string url = AzureDevOpsCodePathProvider.GenerateUrlFromInfo(repoUrl, filePath, branchName, line, lineEnd, lineStartColumn, lineEndColumn);
-            var rtfContent = this._rtfBuilderService.GenerateRtf(docView?.TextView?.Selection.SelectedSpans);
+
+            var rtfBuilderService = VS.GetMefServiceAsync<IRtfBuilderService>().ConfigureAwait(false).GetAwaiter().GetResult();
+            var rtfContent = rtfBuilderService.GenerateRtf(docView?.TextView?.Selection.SelectedSpans);
             var codeHtml = RtfPipe.Rtf.ToHtml(rtfContent);
 
             // Clip
@@ -130,14 +126,18 @@
 
             Dictionary<string, string> messageHtmlParameters = new Dictionary<string, string>
             {
-                { @"{url}", ClipboardUtility.GenerateAElement(url) },
+                { @"{url}", ClipboardProvider.GenerateAElement(url) },
                 { @"{code}", codeHtml },
                 { @"{newline}", "\r\n" }
             };
 
-            ClipboardUtility.SetClipboardData(
-                messageParameters.Aggregate(Options.Instance.CustomizedCopyContent, (s, kv) => s.Replace(kv.Key, kv.Value)),
-                messageHtmlParameters.Aggregate(Options.Instance.CustomizedCopyContent, (s, kv) => s.Replace(kv.Key, kv.Value)));
+            string customizedCopyContent = Options.Instance.CustomizedCopyContent;
+            if (!customizedCopyContent.Contains("{url}"))
+                customizedCopyContent = "{url}";
+
+            ClipboardProvider.SetClipboardData(
+                messageParameters.Aggregate(customizedCopyContent, (s, kv) => s.Replace(kv.Key, kv.Value)),
+                messageHtmlParameters.Aggregate(customizedCopyContent, (s, kv) => s.Replace(kv.Key, kv.Value)));
 
             await ShowMessageAsync($"Code path copied and ready to be shared! Detailed url: {url}").ConfigureAwait(false);
 
