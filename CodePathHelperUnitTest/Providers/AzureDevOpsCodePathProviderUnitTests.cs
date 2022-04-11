@@ -15,7 +15,7 @@
 
             Assert.IsTrue(isSuccess);
             Assert.IsTrue(repoUrl == "https://Tenant.visualstudio.com/Organization/_git/Repository");
-            Assert.IsTrue(filePath == "/sources/dev/data/source.cs");
+            Assert.IsTrue(filePath == "sources/dev/data/source.cs");
             Assert.IsTrue(branchName == "users/TestAzureDevOps");
             Assert.IsTrue(line == 22);
             Assert.IsTrue(lineEnd == 25);

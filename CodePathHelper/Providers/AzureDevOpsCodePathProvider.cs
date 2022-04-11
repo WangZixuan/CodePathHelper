@@ -23,7 +23,7 @@
             if (questionMarkIndex == -1)
                 return false;
             repoUrl = repoUrlPart.Substring(0, questionMarkIndex);
-            filePath = repoUrlPart.Substring(questionMarkIndex + 6);
+            filePath = repoUrlPart.Substring(questionMarkIndex + 6).Trim('/');
 
             for (int i = 1; i < urlParts.Length; i++)
             {
