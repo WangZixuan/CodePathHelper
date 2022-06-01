@@ -141,6 +141,9 @@
 
             await ShowMessageAsync($"Code path copied and ready to be shared! Detailed url: {url}").ConfigureAwait(false);
 
+            // Start the browser with url
+            await StartBrowswerAsync(url).ConfigureAwait(false);
+
             // Background git job
             if (Options.Instance.BackgroundGitJob == BackgroundGitJob.Push)
             {
@@ -149,6 +152,25 @@
             else if (Options.Instance.BackgroundGitJob == BackgroundGitJob.CommitAndPush)
             {
                 await Task.Run(() => GitProvider.GitCommitAndPush());   
+            }
+        }
+
+        private async Task StartBrowswerAsync(string url)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start(url);
+            }
+            catch (System.ComponentModel.Win32Exception noBrowser)
+            {
+                if (noBrowser.ErrorCode == -2147467259)
+                {
+                    await MessageProvider.ShowErrorInMessageBoxAsync(noBrowser.Message).ConfigureAwait(false);
+                }
+            }
+            catch (System.Exception other)
+            {
+                await MessageProvider.ShowErrorInMessageBoxAsync(other.Message).ConfigureAwait(false);
             }
         }
         
