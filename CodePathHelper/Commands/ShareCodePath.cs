@@ -141,8 +141,11 @@
 
             await ShowMessageAsync($"Code path copied and ready to be shared! Detailed url: {url}").ConfigureAwait(false);
 
-            // Start the browser with url
-            await StartBrowserAsync(url).ConfigureAwait(false);
+            if (Options.Instance.StartBrowser)
+            {
+                // Start the browser with url
+                await StartBrowserAsync(url).ConfigureAwait(false);
+            }
 
             // Background git job
             if (Options.Instance.BackgroundGitJob == BackgroundGitJob.Push)

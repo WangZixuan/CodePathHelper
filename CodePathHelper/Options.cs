@@ -48,6 +48,12 @@ namespace CodePathHelper
         [DefaultValue(BackgroundGitJob.None)]
         public BackgroundGitJob BackgroundGitJob { get; set; } = BackgroundGitJob.None;
 
+        [Category("Share Code Path")]
+        [DisplayName("Start browser")]
+        [Description("Start browser automatically with the code url")]
+        [DefaultValue(true)]
+        public bool StartBrowser { get; set; } = true;
+
         // Goto Code Path
 
         [Category("Goto Code Path")]
