@@ -51,8 +51,8 @@ namespace CodePathHelper
         [Category("Share Code Path")]
         [DisplayName("Start browser")]
         [Description("Start browser automatically with the code url")]
-        [DefaultValue(true)]
-        public bool StartBrowser { get; set; } = true;
+        [DefaultValue(false)]
+        public bool StartBrowser { get; set; } = false;
 
         // Goto Code Path
 
@@ -64,7 +64,7 @@ namespace CodePathHelper
 
         [Category("Goto Code Path")]
         [DisplayName("Select code snippet")]
-        [Description("If select the code snippet from url automatically.")]
+        [Description("If select the code snippet in the code window.")]
         [DefaultValue(true)]
         public bool SelectCodeSnippet { get; set; } = true;
 

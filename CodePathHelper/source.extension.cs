@@ -11,7 +11,7 @@ namespace CodePathHelper
         public const string Name = "Code Path Helper";
         public const string Description = @"Makes it super easy to share code path of Azure DevOps, or go to the file given Azure DevOps link.";
         public const string Language = "en-US";
-        public const string Version = "1.0.1";
+        public const string Version = "1.0.2";
         public const string Author = "Zixuan Wang";
         public const string Tags = "";
     }
