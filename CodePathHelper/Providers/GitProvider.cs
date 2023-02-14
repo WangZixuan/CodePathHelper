@@ -3,12 +3,15 @@
     using System;
     using System.Diagnostics;
     using System.IO;
+    using System.Threading.Tasks;
 
     internal static class GitProvider 
     {
         static string _repoUrl = string.Empty;
 
         static string _branchName = string.Empty;
+
+        static bool _hasGit = false;
 
         private static Process _process = new Process
         {
@@ -108,5 +111,33 @@
             return _process.StandardOutput.ReadLine();
         }
 
+        public static async Task<bool> EnsureGitInstalledAsync()
+        {
+            try
+            {
+                if (!_hasGit)
+                {
+                    var result = RunGitCommand("-v");
+
+                    if (result.StartsWith("git version"))
+                    {
+                        _hasGit = true;
+                        return true;
+                    }
+                    else
+                    {
+                        await MessageProvider.ShowErrorInMessageBoxAsync("No git installed!").ConfigureAwait(false);
+                        return false;
+                    }
+                }
+
+                return true;
+            }
+            catch
+            {
+                await MessageProvider.ShowErrorInMessageBoxAsync("No git installed!").ConfigureAwait(false);
+                return false;
+            }
+        }
     }
 }

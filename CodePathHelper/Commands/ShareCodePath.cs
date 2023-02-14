@@ -93,6 +93,9 @@
         private async void Execute(object sender, EventArgs e)
 #pragma warning restore VSTHRD100 // Avoid async void methods
         {
+            if (!GitProvider.EnsureGitInstalledAsync().ConfigureAwait(false).GetAwaiter().GetResult())
+                return;
+
             DocumentView docView = await VS.Documents.GetActiveDocumentViewAsync().ConfigureAwait(false);
 
             var fileFullPath = docView?.FilePath?.Trim('/');

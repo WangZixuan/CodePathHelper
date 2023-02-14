@@ -87,6 +87,9 @@
         /// <param name="e">Event args.</param>
         private void Execute(object sender, EventArgs e)
         {
+            if (!GitProvider.EnsureGitInstalledAsync().ConfigureAwait(false).GetAwaiter().GetResult())
+                return;
+
             ThreadHelper.ThrowIfNotOnUIThread();
             EnvDTE80.DTE2 dteObject = (EnvDTE80.DTE2)Package.GetGlobalService(typeof(SDTE));
             if (dteObject == null)
